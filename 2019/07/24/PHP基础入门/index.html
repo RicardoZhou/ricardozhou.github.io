@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="PHP简介PHP（全称：PHP：Hypertext Preprocessor，即”PHP：超文本预处理器”）是一种通用开源脚本语言。PHP 文件可包含文本、HTML、JavaScript代码和 PHP 代码PHP 代码在服务器上执行，结果以纯 HTML 形式返回给浏览器PHP 文件的默认文件扩展名是 “.php” PHP语法基本语法PHP 脚本可以放在文档中的任何位置。PHP 脚本以 尖括号、问号">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-24T11:34:21.491Z">
+<meta property="og:updated_time" content="2019-07-26T10:05:38.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP基础入门">
 <meta name="twitter:description" content="PHP简介PHP（全称：PHP：Hypertext Preprocessor，即”PHP：超文本预处理器”）是一种通用开源脚本语言。PHP 文件可包含文本、HTML、JavaScript代码和 PHP 代码PHP 代码在服务器上执行，结果以纯 HTML 形式返回给浏览器PHP 文件的默认文件扩展名是 “.php” PHP语法基本语法PHP 脚本可以放在文档中的任何位置。PHP 脚本以 尖括号、问号">
@@ -395,6 +395,976 @@
 <p>显示变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt1=&quot;学习 PHP&quot;;</span><br><span class="line">$txt2=&quot;PHP&quot;;</span><br><span class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</span><br><span class="line"> </span><br><span class="line">print $txt1;</span><br><span class="line">print &quot;&lt;br&gt;&quot;;</span><br><span class="line">print &quot;学习 $txt2 ,很开心&quot;;</span><br><span class="line">print &quot;&lt;br&gt;&quot;;</span><br><span class="line">print &quot;我车的品牌是 &#123;$cars[0]&#125;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
+<p><strong>其他</strong></p>
+<ul>
+<li><strong>dump：</strong>显示关于一个或多个表达式的结构信息，包括表达式的类型与值。数组将递归展开值，通过缩进显示其结构。</li>
+<li><strong>print_r：</strong>打印关于变量的易于理解的信息,如果给出的是 string、integer 或 float，将打印变量值本身。如果给出的是 array，将会按照一定格式显示键和元素。object 与数组类似。 记住，print_r() 将把数组的指针移到最后边。使用 reset() 可让指针回到开始处。</li>
+<li><strong>var_dump和print_r的区别：</strong>var_dump 返回表达式的类型与值而 print_r 仅返回结果，相比调试代码使用 var_dump 更便于阅读。</li>
+</ul>
+<h2 id="PHP-EOF-heredoc"><a href="#PHP-EOF-heredoc" class="headerlink" title="PHP EOF(heredoc)"></a>PHP EOF(heredoc)</h2><p>PHP EOF(heredoc)是一种在命令行shell（如sh、csh、ksh、bash、PowerShell和zsh）和程序语言（像Perl、PHP、Python和Ruby）里定义一个字符串的方法。<br><strong>使用概述</strong></p>
+<ol>
+<li>必须后接分号，否则编译通不过。</li>
+<li>EOF 可以用任意其它字符代替，只需保证结束标识与开始标识一致。</li>
+<li>结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。</li>
+<li>开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。</li>
+<li>当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &lt;&lt;&lt;EOF</span><br><span class="line">    &lt;h1&gt;我的第一个标题&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我的第一个段落。&lt;/p&gt;</span><br><span class="line">EOF;</span><br><span class="line">// 结束需要独立一行且前后不能空格</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>注意</strong></p>
+<ol>
+<li>以 <strong>&lt;&lt;&lt;EOF</strong> 开始标记开始，以 <strong>EOF</strong> 结束标记结束，结束标记必须顶头写，不能有缩进和空格，且在结束标记末尾要有分号 。</li>
+<li>开始标记和结束标记相同，比如常用大写的 <strong>EOT、EOD、EOF</strong> 来表示，但是不只限于那几个(也可以用：JSON、HTML等)，只要保证开始标记和结束标记不在正文中出现即可。</li>
+<li>位于开始标记和结束标记之间的变量可以被正常解析，但是函数则不可以。在 heredoc 中，变量不需要用连接符 <strong>.</strong> 或 <strong>,</strong> 来拼接。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$name=&quot;runoob&quot;;</span><br><span class="line">$a= &lt;&lt;&lt;EOF</span><br><span class="line">    &quot;abc&quot;$name</span><br><span class="line">    &quot;123&quot;</span><br><span class="line">EOF;</span><br><span class="line">// 结束需要独立一行且前后不能空格</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>String（字符串）, Integer（整型）, Float（浮点型）, Boolean（布尔型）, Array（数组）, Object（对象）, NULL（空值）。<br><strong>字符串</strong><br>一个字符串是一串字符的序列，就像 “Hello world!”。<br>可以将任何文本放在单引号和双引号中。<br><strong>整型</strong><br>整数是一个没有小数的数字。</p>
+<ul>
+<li>整数必须至少有一个数字 (0-9)</li>
+<li>整数不能包含逗号或空格</li>
+<li>整数是没有小数点的</li>
+<li>整数可以是正数或负数</li>
+<li>整型可以用三种格式来指定：十进制， 十六进制（ 以 0x 为前缀）或八进制（前缀为 0）。</li>
+</ul>
+<p><strong>浮点型</strong><br>浮点数是带小数部分的数字，或是指数形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$x = 10.365;</span><br><span class="line">var_dump($x);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;; </span><br><span class="line">$x = 2.4e3;</span><br><span class="line">var_dump($x);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;; </span><br><span class="line">$x = 8E-5;</span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>布尔型</strong><br>布尔型可以是 TRUE 或 FALSE。<br><strong>数组</strong><br>数组可以在一个变量中存储多个值。<br><strong>对象</strong><br>对象数据类型也可以用于存储数据。<br>在 PHP 中，对象必须声明。<br>首先，你必须使用class关键字声明类对象。类是可以包含属性和方法的结构。<br>然后我们在类中定义数据类型，然后在实例化的类中使用数据类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Car</span><br><span class="line">&#123;</span><br><span class="line">  var $color;</span><br><span class="line">  function __construct($color=&quot;green&quot;) &#123;</span><br><span class="line">    $this-&gt;color = $color;</span><br><span class="line">  &#125;</span><br><span class="line">  function what_color() &#123;</span><br><span class="line">    return $this-&gt;color;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>NULL值</strong><br>NULL 值表示变量没有值。NULL 是数据类型为 NULL 的值。<br>NULL 值指明一个变量是否为空值。 同样可用于数据空值和NULL值的区别。<br>可以通过设置变量值为 NULL 来清空变量数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$x=&quot;Hello world!&quot;;</span><br><span class="line">$x=null;</span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类型比较"><a href="#类型比较" class="headerlink" title="类型比较"></a>类型比较</h2><ul>
+<li>松散比较：使用两个等号 <strong>==</strong> 比较，只比较值，不比较类型。</li>
+<li>严格比较：用三个等号 <strong>===</strong> 比较，除了比较值，也比较类型。</li>
+</ul>
+<p>对于多种类型，比较运算符根据下表比较（按顺序）。<br><strong>比较多种类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算数 1 类型</th>
+<th>运算数 2 类型</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>null 或 string</td>
+<td>string</td>
+<td>将 <strong>NULL</strong> 转换为 “”，进行数字或词汇比较</td>
+</tr>
+<tr>
+<td>bool 或 null</td>
+<td>任何其它类型</td>
+<td>转换为 bool，<strong>FALSE &lt; TRUE</strong></td>
+</tr>
+<tr>
+<td>object</td>
+<td>object</td>
+<td>内置类可以定义自己的比较，不同类不能比较，相同类和数组同样方式比较属性（PHP 4 中），PHP 5 有其自己的说明</td>
+</tr>
+<tr>
+<td>string，resource 或 number</td>
+<td>string，resource 或 number</td>
+<td>将字符串和资源转换成数字，按普通数学比较</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+<td>具有较少成员的数组较小，如果运算数 1 中的键不存在于运算数 2 中则数组无法比较，否则挨个值比较（见下例）</td>
+</tr>
+<tr>
+<td>object</td>
+<td>任何其它类型</td>
+<td>object 总是更大</td>
+</tr>
+<tr>
+<td>array</td>
+<td>任何其它类型</td>
+<td>array 总是更大</td>
+</tr>
+</tbody></table>
+<p><strong>松散比较==</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TRUE</th>
+<th>FALSE</th>
+<th>1</th>
+<th>0</th>
+<th>-1</th>
+<th>“1”</th>
+<th>“0”</th>
+<th>“-1”</th>
+<th>NULL</th>
+<th>array()</th>
+<th>“php”</th>
+<th>“”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>0</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“1”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“0”</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“-1”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>array()</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“php”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“”</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+</tbody></table>
+<p><strong>严格比较===</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TRUE</th>
+<th>FALSE</th>
+<th>1</th>
+<th>0</th>
+<th>-1</th>
+<th>“1”</th>
+<th>“0”</th>
+<th>“-1”</th>
+<th>NULL</th>
+<th>array()</th>
+<th>“php”</th>
+<th>“”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>0</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“1”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“0”</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“-1”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>array()</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“php”</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>“”</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+</tbody></table>
+<p><a href="https://www.php.net/manual/zh/language.operators.comparison.php" target="_blank" rel="noopener">比较运算符</a><br><a href="https://www.php.net/manual/zh/types.comparisons.php" target="_blank" rel="noopener">PHP 类型比较表</a></p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量是一个简单值的标识符。该值在脚本中不能改变。<br>一个常量由英文字母、下划线、和数字组成,但数字不能作为首字母出现。 (常量名不需要加 $ 修饰符)。<br><strong>注意：</strong>常量在整个脚本中都可以使用，即便常量定义在函数外也可以正常使用常量。<br>设置常量，使用 define() 函数，函数语法如下：<br><code>bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )</code></p>
+<ul>
+<li><strong>name：</strong>必选参数，常量名称，即标志符。</li>
+<li><strong>value：</strong>必选参数，常量的值。</li>
+<li><strong>case_insensitive ：</strong>可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">define(&quot;HELLO&quot;, &quot;hello world&quot;, true);</span><br><span class="line">echo hello;//输出“hellow world”；</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>常量是全局的。</strong></p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串变量用于包含有字符的值。<br>可以直接在函数中使用字符串，或者把它存储在变量中。<br><strong>并置运算符</strong><br>在 PHP 中，只有一个字符串运算符。<br>并置运算符 (.) 用于把两个字符串值连接起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$txt1=&quot;Hello world!&quot;; </span><br><span class="line">$txt2=&quot;What a nice day!&quot;; </span><br><span class="line">echo $txt1 . &quot; &quot; . $txt2; 	//输出“Hello world! What a nice day!”</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>strlen() 函数</strong><br>返回字符串的长度（字符数）。<br><strong>strpos() 函数</strong><br>用于在字符串内查找一个字符或一段指定的文本。<br>如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。（第一个字符的位置是 0，而不是 1。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">echo strpos(&quot;Hello world!&quot;,&quot;world&quot;); 	//输出 6</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p><strong>算术运算符</strong></p>
+<ul>
+<li>， - ， * ， / ， % ， -（取反） ， .（并置）<br>PHP7+ 版本新增整除运算符 intdiv()<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(intdiv(10, 3));	//输出 int(3)</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>赋值运算符</strong><br>= ， += ， -= ， <em>= ， /= ， %= ， .=<br>*</em>递增/递减运算符**<br>++x , x++ , –x , x–<br><strong>比较运算符</strong><br>== ， === ， != ， !== ， &gt; ， &lt; ， &gt;= ， &lt;=<br><strong>逻辑运算符</strong><br>and ， or ， xor（异或） ， &amp;&amp; ， || ， !（非）<br><strong>数组运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x + y</td>
+<td>集合</td>
+<td>x 和 y 的集合</td>
+</tr>
+<tr>
+<td>x == y</td>
+<td>相等</td>
+<td>如果 x 和 y 具有相同的键/值对，则返回 true</td>
+</tr>
+<tr>
+<td>x === y</td>
+<td>恒等</td>
+<td>如果 x 和 y 具有相同的键/值对，且顺序相同类型相同，则返回 true</td>
+</tr>
+<tr>
+<td>x != y</td>
+<td>不相等</td>
+<td>如果 x 不等于 y，则返回 true</td>
+</tr>
+<tr>
+<td>x &lt;&gt; y</td>
+<td>不相等</td>
+<td>如果 x 不等于 y，则返回 true</td>
+</tr>
+<tr>
+<td>x !== y</td>
+<td>不恒等</td>
+<td>如果 x 不等于 y，则返回 true</td>
+</tr>
+</tbody></table>
+<p><strong>三元运算符</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$test = &apos;test string&apos;;</span><br><span class="line">// 普通写法</span><br><span class="line">$username = isset($test) ? $test : &apos;nobody&apos;;</span><br><span class="line">echo $username, PHP_EOL;</span><br><span class="line"> </span><br><span class="line">// PHP 5.3+ 版本写法</span><br><span class="line">$username = $test ?: &apos;nobody&apos;;</span><br><span class="line">echo $username, PHP_EOL;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>PHP_EOL 是一个换行符，兼容更大平台。<br>在 PHP7+ 版本多了一个 NULL 合并运算符 <strong>??</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 如果 $_GET[&apos;user&apos;] 不存在返回 &apos;nobody&apos;，否则返回 $_GET[&apos;user&apos;] 的值</span><br><span class="line">$username = $_GET[&apos;user&apos;] ?? &apos;nobody&apos;;</span><br><span class="line">// 类似的三元运算符</span><br><span class="line">$username = isset($_GET[&apos;user&apos;]) ? $_GET[&apos;user&apos;] : &apos;nobody&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>$a=$c?:$b;  等同于  $a=$c?$c:$b;<br>$a=$c??$b;  等同于  $a=isset($c)?$c:$b;<br><strong>组合比较符(PHP7+)</strong><br>PHP7+ 支持组合比较符（combined comparison operator）也称之为太空船操作符，符号为 <strong>&lt;=&gt;</strong>。组合比较运算符可以轻松实现两个变量的比较，当然不仅限于数值类数据的比较。<br><code>$c = $a &lt;=&gt; $b;</code></p>
+<ul>
+<li>如果 $a &gt; $b, 则 $c 的值为 1。</li>
+<li>如果 $a == $b, 则 $c 的值为 0。</li>
+<li>如果 $a &lt; $b, 则 $c 的值为 -1。</li>
+<li><em>运算符优先级*</em><br>下表按照优先级从高到低列出了运算符。同一行中的运算符具有相同优先级，此时它们的结合方向决定求值顺序。</li>
+<li><em>说明：*</em>左 ＝ 从左到右，右 ＝ 从右到左。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>结合方向</th>
+<th>运算符</th>
+<th>附加信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无</td>
+<td>clone new</td>
+<td>clone 和 new</td>
+</tr>
+<tr>
+<td>左</td>
+<td>[<a href="]"></a></td>
+<td>array()</td>
+</tr>
+<tr>
+<td>右</td>
+<td>++ – ~ (int) (float) (string) (array) (object) (bool) @</td>
+<td>类型和递增／递减</td>
+</tr>
+<tr>
+<td>无</td>
+<td>instanceof</td>
+<td>类型</td>
+</tr>
+<tr>
+<td>右</td>
+<td>!</td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>* / %</td>
+<td>算术运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>+ – .</td>
+<td>算术运算符和字符串运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&lt;&lt; &gt;&gt;</td>
+<td>位运算符</td>
+</tr>
+<tr>
+<td>无</td>
+<td>== != === !== &lt;&gt;</td>
+<td>比较运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>&amp;</td>
+<td>位运算符和引用</td>
+</tr>
+<tr>
+<td>左</td>
+<td>^</td>
+<td>位运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>左</td>
+<td>&amp;&amp;</td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>左</td>
+<td>? :</td>
+<td>三元运算符</td>
+</tr>
+<tr>
+<td>右</td>
+<td>= += -= *= /= .= %= &amp;=</td>
+<td>= ^= &lt;&lt;= &gt;&gt;= =&gt;</td>
+</tr>
+<tr>
+<td>左</td>
+<td>and</td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>xor</td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>or</td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td>左</td>
+<td>,</td>
+<td>多处用到</td>
+</tr>
+</tbody></table>
+<p>运算符优先级中，or 和 ||，&amp;&amp; 和 and 都是逻辑运算符，效果一样，但是其优先级却不一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 优先级： &amp;&amp;  &gt;  =  &gt;  and</span><br><span class="line">// 优先级： ||  &gt;  =  &gt;  or</span><br><span class="line"> </span><br><span class="line">$a = 3;</span><br><span class="line">$b = false;</span><br><span class="line">$c = $a or $b;</span><br><span class="line">var_dump($c);          // 这里的 $c 为 int 值3，而不是 boolean 值 true</span><br><span class="line">$d = $a || $b;</span><br><span class="line">var_dump($d);          //这里的 $d 就是 boolean 值 true </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>括号的使用</strong><br>我们通过括号的配对来明确标明运算顺序，而非靠运算符优先级和结合性来决定，通常能够增加代码的可读性。</p>
+<h2 id="If…Else-语句"><a href="#If…Else-语句" class="headerlink" title="If…Else 语句"></a>If…Else 语句</h2><ul>
+<li>if语句</li>
+<li>if…else语句</li>
+<li>if…elseif…else语句</li>
+<li>switch语句</li>
+</ul>
+<h2 id="Switch-语句"><a href="#Switch-语句" class="headerlink" title="Switch 语句"></a>Switch 语句</h2><p>switch 语句用于根据多个不同条件执行不同动作。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组是一个能在单个变量中存储多个值的特殊变量。<br><strong>创建数组</strong><br><code>array();</code></p>
+<ul>
+<li><strong>数值数组</strong> - 带有数字 ID 键的数组</li>
+<li><strong>关联数组</strong> - 带有指定的键的数组，每个键关联一个值</li>
+<li><strong>多维数组</strong> - 包含一个或多个数组的数组</li>
+</ul>
+<p><strong>数值数组</strong><br>自动分配 ID 键（ID 键总是从 0 开始）<br><code>$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</code><br>人工分配 ID 键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$cars[0]=&quot;Volvo&quot;;</span><br><span class="line">$cars[1]=&quot;BMW&quot;;</span><br><span class="line">$cars[2]=&quot;Toyota&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>可使用 for 循环遍历数值数组。<br><strong>获取数组的长度 - count() 函数</strong><br>用于返回数组的长度（元素的数量）<br><strong>关联数组</strong><br>使用自己分配给数组的指定的键的数组。<br><code>$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$age[&apos;Peter&apos;]=&quot;35&quot;;</span><br><span class="line">$age[&apos;Ben&apos;]=&quot;37&quot;;</span><br><span class="line">$age[&apos;Joe&apos;]=&quot;43&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>可使用 foreach 循环遍历关联数组。</p>
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><p>数组中的元素可以按字母或数字顺序进行降序或升序排列。</p>
+<ul>
+<li>sort() - 对数组进行升序排列</li>
+<li>rsort() - 对数组进行降序排列</li>
+<li>asort() - 根据关联数组的值，对数组进行升序排列</li>
+<li>ksort() - 根据关联数组的键，对数组进行升序排列</li>
+<li>arsort() - 根据关联数组的值，对数组进行降序排列</li>
+<li>krsort() - 根据关联数组的键，对数组进行降序排列</li>
+</ul>
+<h2 id="超级全局变量"><a href="#超级全局变量" class="headerlink" title="超级全局变量"></a>超级全局变量</h2><p>超级全局变量在PHP 4.1.0之后被启用, 是PHP系统中自带的变量，在一个脚本的全部作用域中都可用。<br>PHP中预定义了几个超级全局变量（superglobals） ，这意味着它们在一个脚本的全部作用域中都可用。 你不需要特别说明，就可以在函数及类中使用。</p>
+<ul>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li>$_SESSION</li>
+</ul>
+<p><strong>$GLOBALS</strong><br>$GLOBALS 是PHP的一个超级全局变量组，在一个PHP脚本的全部作用域中都可以访问。<br>$GLOBALS 是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$x = 75; </span><br><span class="line">$y = 25;</span><br><span class="line">function addition() </span><br><span class="line">&#123; </span><br><span class="line">    $GLOBALS[&apos;z&apos;] = $GLOBALS[&apos;x&apos;] + $GLOBALS[&apos;y&apos;]; </span><br><span class="line">&#125;</span><br><span class="line">addition(); </span><br><span class="line">echo $z; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>$_SERVER</strong></p>
+<p>$_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，或者提供一些没有在这里列举出来的项目。</p>
+<table>
+<thead>
+<tr>
+<th>元素/代码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$_SERVER[‘PHP_SELF’]</td>
+<td>当前执行脚本的文件名，与 document root 有关。例如，在地址为 <a href="http://example.com/test.php/foo.bar" target="_blank" rel="noopener">http://example.com/test.php/foo.bar</a> 的脚本中使用 $<em>SERVER[‘PHP_SELF’] 将得到 /test.php/foo.bar。<em>_FILE</em></em> 常量包含当前(例如包含)文件的完整路径和文件名。 从 PHP 4.3.0 版本开始，如果 PHP 以命令行模式运行，这个变量将包含脚本名。之前的版本该变量不可用。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘GATEWAY_INTERFACE’]</td>
+<td>服务器使用的 CGI 规范的版本；例如，”CGI/1.1”。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_ADDR’]</td>
+<td>当前运行脚本所在的服务器的 IP 地址。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_NAME’]</td>
+<td>当前运行脚本所在的服务器的主机名。如果脚本运行于虚拟主机中，该名称是由那个虚拟主机所设置的值决定。(如: <a href="http://www.runoob.com" target="_blank" rel="noopener">www.runoob.com</a>)</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_SOFTWARE’]</td>
+<td>服务器标识字符串，在响应请求时的头信息中给出。 (如：Apache/2.2.24)</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_PROTOCOL’]</td>
+<td>请求页面时通信协议的名称和版本。例如，”HTTP/1.0”。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘REQUEST_METHOD’]</td>
+<td>访问页面使用的请求方法；例如，”GET”, “HEAD”，”POST”，”PUT”。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘REQUEST_TIME’]</td>
+<td>请求开始时的时间戳。从 PHP 5.1.0 起可用。 (如：1377687496)</td>
+</tr>
+<tr>
+<td>$_SERVER[‘QUERY_STRING’]</td>
+<td>query string（查询字符串），如果有的话，通过它进行页面访问。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘HTTP_ACCEPT’]</td>
+<td>当前请求头中 Accept: 项的内容，如果存在的话。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘HTTP_ACCEPT_CHARSET’]</td>
+<td>当前请求头中 Accept-Charset: 项的内容，如果存在的话。例如：”iso-8859-1,*,utf-8”。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘HTTP_HOST’]</td>
+<td>当前请求头中 Host: 项的内容，如果存在的话。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘HTTP_REFERER’]</td>
+<td>引导用户代理到当前页的前一页的地址（如果存在）。由 user agent 设置决定。并不是所有的用户代理都会设置该项，有的还提供了修改 HTTP_REFERER 的功能。简言之，该值并不可信。)</td>
+</tr>
+<tr>
+<td>$_SERVER[‘HTTPS’]</td>
+<td>如果脚本是通过 HTTPS 协议被访问，则被设为一个非空的值。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘REMOTE_ADDR’]</td>
+<td>浏览当前页面的用户的 IP 地址。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘REMOTE_HOST’]</td>
+<td>浏览当前页面的用户的主机名。DNS 反向解析不依赖于用户的 REMOTE_ADDR。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘REMOTE_PORT’]</td>
+<td>用户机器上连接到 Web 服务器所使用的端口号。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SCRIPT_FILENAME’]</td>
+<td>当前执行脚本的绝对路径。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_ADMIN’]</td>
+<td>该值指明了 Apache 服务器配置文件中的 SERVER_ADMIN 参数。如果脚本运行在一个虚拟主机上，则该值是那个虚拟主机的值。(如：<a href="mailto:someone@runoob.com" target="_blank" rel="noopener">someone@runoob.com</a>)</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_PORT’]</td>
+<td>Web 服务器使用的端口。默认值为 “80”。如果使用 SSL 安全连接，则这个值为用户设置的 HTTP 端口。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SERVER_SIGNATURE’]</td>
+<td>包含了服务器版本和虚拟主机名的字符串。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘PATH_TRANSLATED’]</td>
+<td>当前脚本所在文件系统（非文档根目录）的基本路径。这是在服务器进行虚拟到真实路径的映像后的结果。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SCRIPT_NAME’]</td>
+<td>包含当前脚本的路径。这在页面需要指向自己时非常有用。<strong>FILE</strong> 常量包含当前脚本(例如包含文件)的完整路径和文件名。</td>
+</tr>
+<tr>
+<td>$_SERVER[‘SCRIPT_URI’]</td>
+<td>URI 用来指定要访问的页面。例如 “/index.html”。</td>
+</tr>
+</tbody></table>
+<p><strong>$_REQUEST</strong><br>$_REQUEST 用于收集HTML表单提交的数据。<br><strong>$_POST</strong><br>$_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”post”。<br><strong>$_GET</strong><br>$_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”get”。</p>
+<h2 id="While-循环"><a href="#While-循环" class="headerlink" title="While 循环"></a>While 循环</h2><ul>
+<li><strong>while</strong> - 只要指定的条件成立，则循环执行代码块</li>
+<li><strong>do…while</strong> - 首先执行一次代码块，然后在指定的条件成立时重复这个循环</li>
+<li><strong>for</strong> - 循环执行代码块指定的次数</li>
+<li><strong>foreach</strong> - 根据数组中每个元素来循环代码块</li>
+</ul>
+<h2 id="For-Foreach-循环"><a href="#For-Foreach-循环" class="headerlink" title="For/Foreach 循环"></a>For/Foreach 循环</h2><p><strong>for循环</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (初始值; 条件; 增量)</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>foreach循环</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foreach ($array as $value)	//$value 可用 $key =&gt; $value 替换</span><br><span class="line">&#123;</span><br><span class="line">    要执行代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p><strong>内建函数</strong><br>PHP 中，提供了超过 1000 个内建的函数。<br><strong>创建 PHP 函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function functionName()</span><br><span class="line">&#123;</span><br><span class="line">    // 要执行的代码</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>函数准则</p>
+<ul>
+<li>函数的名称应该提示出它的功能</li>
+<li>函数名称以字母或下划线开头（不能以数字开头）</li>
+</ul>
+<p><strong>参数</strong><br>为了给函数添加更多的功能，我们可以添加参数，参数类似变量。<br>参数就在函数名称后面的一个括号内指定。<br><strong>返回值</strong><br>如需让函数返回一个值，请使用 return 语句。</p>
+<h2 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h2><p>PHP 向它运行的任何脚本提供了大量的预定义常量。<br>不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。<br>有八个魔术常量它们的值随着它们在代码中的位置改变而改变。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LINE</strong></td>
+<td>文件中的当前行号。</td>
+</tr>
+<tr>
+<td><strong>FILE</strong></td>
+<td>文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。自 PHP 4.0.2 起，<strong>FILE</strong> 总是包含一个绝对路径（如果是符号连接，则是解析后的绝对路径），而在此之前的版本有时会包含一个相对路径。</td>
+</tr>
+<tr>
+<td><strong>DIR</strong></td>
+<td>文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录。它等价于 dirname(<strong>FILE</strong>)。除非是根目录，否则目录中名不包括末尾的斜杠。（PHP 5.3.0中新增）</td>
+</tr>
+<tr>
+<td><strong>FUNCTION</strong></td>
+<td>函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。</td>
+</tr>
+<tr>
+<td><strong>CLASS</strong></td>
+<td>类的名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 <strong>CLASS</strong> 对 trait 也起作用。当用在 trait 方法中时，<strong>CLASS</strong> 是调用 trait 方法的类的名字。</td>
+</tr>
+<tr>
+<td><strong>TRAIT</strong></td>
+<td>Trait 的名字（PHP 5.4.0 新加）。自 PHP 5.4 起此常量返回 trait 被定义时的名字（区分大小写）。Trait 名包括其被声明的作用区域（例如 Foo\Bar）。</td>
+</tr>
+<tr>
+<td><strong>METHOD</strong></td>
+<td>类的方法名（PHP 5.0.0 新加）。返回该方法被定义时的名字（区分大小写）。</td>
+</tr>
+<tr>
+<td><strong>NAMESPACE</strong></td>
+<td>当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。</td>
+</tr>
+</tbody></table>
+<h2 id="命名空间-namespace"><a href="#命名空间-namespace" class="headerlink" title="命名空间(namespace)"></a>命名空间(namespace)</h2><p>命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。<br>命名空间可以解决以下两类问题：</p>
+<ol>
+<li>用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。</li>
+<li>为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。</li>
+</ol>
+<p><strong>定义命名空间</strong><br>默认情况下，所有常量、类和函数名都放在全局空间下，就和PHP支持命名空间之前一样。<br>命名空间通过关键字namespace 来声明。如果一个文件中包含命名空间，它必须在其它所有代码之前声明命名空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">// 定义代码在 &apos;MyProject&apos; 命名空间中  </span><br><span class="line">namespace MyProject;  </span><br><span class="line"> </span><br><span class="line">// ... 代码 ...</span><br></pre></td></tr></table></figure>
+
+<p>也可以在同一个文件中定义不同的命名空间代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line"></span><br><span class="line">namespace AnotherProject;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>不建议使用这种语法在单个文件中定义多个命名空间。建议使用下面的大括号形式的语法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line">    const CONNECT_OK = 1;</span><br><span class="line">    class Connection &#123; /* ... */ &#125;</span><br><span class="line">    function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace AnotherProject &#123;</span><br><span class="line">    const CONNECT_OK = 1;</span><br><span class="line">    class Connection &#123; /* ... */ &#125;</span><br><span class="line">    function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将全局的非命名空间中的代码与命名空间中的代码组合在一起，只能使用大括号形式的语法。全局代码必须用一个不带名称的 namespace 语句加上大括号括起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123; // 全局代码</span><br><span class="line">session_start();</span><br><span class="line">$a = MyProject\connect();</span><br><span class="line">echo MyProject\Connection::start();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">declare(encoding=&apos;UTF-8&apos;); //定义多个命名空间和不包含在命名空间中的代码</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line">/* ... */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123; // 全局代码</span><br><span class="line">/* ... */</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以下代码会出现语法错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">namespace MyProject; // 命名空间前出现了“&lt;html&gt;” 会致命错误 -　命名空间必须是程序脚本的第一条语句</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子命名空间</strong><br>与目录和文件的关系很像，PHP 命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject\Sub\Level;  //声明分层次的单个命名空间</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function Connect() &#123; /* ... */  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>命名空间使用</strong></p>
+<ol>
+<li><strong>非限定名称，或不包含前缀的类名称</strong>，例如 $a=new foo(); 或 foo::staticmethod();。如果当前命名空间是 currentnamespace，foo 将被解析为 currentnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，则 foo 会被解析为foo。 警告：如果命名空间中的函数或常量未定义，则该非限定的函数名称或常量名称会被解析为全局函数名称或常量名称。</li>
+<li><strong>限定名称,或包含前缀的名称</strong>，例如 $a = new subnamespace\foo(); 或 subnamespace\foo::staticmethod();。如果当前的命名空间是 currentnamespace，则 foo 会被解析为 currentnamespace\subnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，foo 会被解析为subnamespace\foo。</li>
+<li><strong>完全限定名称，或包含了全局前缀操作符的名称</strong>，例如， $a = new \currentnamespace\foo(); 或 \currentnamespace\foo::staticmethod();。在这种情况下，foo 总是被解析为代码中的文字名(literal name)currentnamespace\foo。<br>注意访问任意全局类、函数或常量，都可以使用完全限定名称，例如 \strlen() 或 \Exception 或 \INI_ALL。</li>
+</ol>
+<p><strong>命名空间和动态语言特征</strong><br>命名空间的实现受到其语言自身的动态特征的影响。因此，如果要将下面的代码转换到命名空间中，动态访问元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class classname</span><br><span class="line">&#123;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__,&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function funcname()</span><br><span class="line">&#123;</span><br><span class="line">    echo __FUNCTION__,&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">const constname = &quot;global&quot;;</span><br><span class="line"></span><br><span class="line">$a = &apos;classname&apos;;</span><br><span class="line">$obj = new $a; // prints classname::__construct</span><br><span class="line">$b = &apos;funcname&apos;;</span><br><span class="line">$b(); // prints funcname</span><br><span class="line">echo constant(&apos;constname&apos;), &quot;\n&quot;; // prints global</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>必须使用完全限定名称（包括命名空间前缀的类名称）。注意因为在动态的类名称、函数名称或常量名称中，限定名称和完全限定名称没有区别，因此其前导的反斜杠是不必要的。<br>动态访问命名空间的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace namespacename;</span><br><span class="line">class classname</span><br><span class="line">&#123;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__,&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function funcname()</span><br><span class="line">&#123;</span><br><span class="line">    echo __FUNCTION__,&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">const constname = &quot;namespaced&quot;;</span><br><span class="line"></span><br><span class="line">include &apos;example1.php&apos;;</span><br><span class="line"></span><br><span class="line">$a = &apos;classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 classname::__construct</span><br><span class="line">$b = &apos;funcname&apos;;</span><br><span class="line">$b(); // 输出函数名</span><br><span class="line">echo constant(&apos;constname&apos;), &quot;\n&quot;; // 输出 global</span><br><span class="line"></span><br><span class="line">/* 如果使用双引号，使用方法为 &quot;\\namespacename\\classname&quot;*/</span><br><span class="line">$a = &apos;\namespacename\classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 namespacename\classname::__construct</span><br><span class="line">$a = &apos;namespacename\classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 namespacename\classname::__construct</span><br><span class="line">$b = &apos;namespacename\funcname&apos;;</span><br><span class="line">$b(); // 输出 namespacename\funcname</span><br><span class="line">$b = &apos;\namespacename\funcname&apos;;</span><br><span class="line">$b(); // 输出 namespacename\funcname</span><br><span class="line">echo constant(&apos;\namespacename\constname&apos;), &quot;\n&quot;; // 输出 namespaced</span><br><span class="line">echo constant(&apos;namespacename\constname&apos;), &quot;\n&quot;; // 输出 namespaced</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>namespace关键字和__NAMESPACE__常量</strong><br>PHP支持两种抽象的访问当前命名空间内部元素的方法，__NAMESPACE__ 魔术常量和namespace关键字。<br>常量__NAMESPACE__的值是包含当前命名空间名称的字符串。在全局的，不包括在任何命名空间中的代码，它包含一个空的字符串。<br>__NAMESPACE__ 示例, 在命名空间中的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">echo &apos;&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; // 输出 &quot;MyProject&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>__NAMESPACE__ 示例，全局代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">echo &apos;&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; // 输出 &quot;&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用__NAMESPACE__动态创建名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">function get($classname)</span><br><span class="line">&#123;</span><br><span class="line">    $a = __NAMESPACE__ . &apos;\\&apos; . $classname;</span><br><span class="line">    return new $a;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关键字 namespace 可用来显式访问当前命名空间或子命名空间中的元素。它等价于类中的 self 操作符。<br><strong>使用命名空间：别名/导入</strong><br>有两种使用别名或导入方式：为类名称使用别名，或为命名空间名称使用别名。<br>在PHP中，别名是通过操作符 use 来实现的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use My\Full\Classname as Another, My\Full\NSname;</span><br><span class="line"></span><br><span class="line">$obj = new Another; // 实例化 My\Full\Classname 类</span><br><span class="line">$a = &apos;Another&apos;;</span><br><span class="line">$obj = new $a;      // 实际化 Another 类</span><br><span class="line">$obj = new \Another; // 实例化 Another 类</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用命名空间：后备全局函数/常量</strong><br>在一个命名空间中，当 PHP 遇到一个非限定的类、函数或常量名称时，它使用不同的优先策略来解析该名称。类名称总是解析到当前命名空间中的名称。因此在访问系统内部或不包含在命名空间中的类名称时，必须使用完全限定名称。<br>对于函数和常量来说，如果当前命名空间中不存在该函数或常量，PHP 会退而使用全局空间中的函数或常量。<br><strong>全局空间</strong><br>如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间，与 PHP 引入命名空间概念前一样。在名称前加上前缀 \ 表示该名称是全局空间中的名称，即使该名称位于其它的命名空间中时也是如此。<br><strong>命名空间的顺序</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace A;</span><br><span class="line">use B\D, C\E as F;</span><br><span class="line"></span><br><span class="line">// 函数调用</span><br><span class="line"></span><br><span class="line">foo();      // 首先尝试调用定义在命名空间&quot;A&quot;中的函数foo()</span><br><span class="line">            // 再尝试调用全局函数 &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">\foo();     // 调用全局空间函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">my\foo();   // 调用定义在命名空间&quot;A\my&quot;中函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">F();        // 首先尝试调用定义在命名空间&quot;A&quot;中的函数 &quot;F&quot; </span><br><span class="line">            // 再尝试调用全局函数 &quot;F&quot;</span><br><span class="line"></span><br><span class="line">// 类引用</span><br><span class="line"></span><br><span class="line">new B();    // 创建命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line"></span><br><span class="line">new D();    // 使用导入规则，创建命名空间 &quot;B&quot; 中定义的类 &quot;D&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;B\D&quot;</span><br><span class="line"></span><br><span class="line">new F();    // 使用导入规则，创建命名空间 &quot;C&quot; 中定义的类 &quot;E&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;C\E&quot;</span><br><span class="line"></span><br><span class="line">new \B();   // 创建定义在全局空间中的类 &quot;B&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;B&quot;</span><br><span class="line"></span><br><span class="line">new \D();   // 创建定义在全局空间中的类 &quot;D&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;D&quot;</span><br><span class="line"></span><br><span class="line">new \F();   // 创建定义在全局空间中的类 &quot;F&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;F&quot;</span><br><span class="line"></span><br><span class="line">// 调用另一个命名空间中的静态方法或命名空间函数</span><br><span class="line"></span><br><span class="line">B\foo();    // 调用命名空间 &quot;A\B&quot; 中函数 &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">B::foo();   // 调用命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果未找到类 &quot;A\B&quot; ，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line"></span><br><span class="line">D::foo();   // 使用导入规则，调用命名空间 &quot;B&quot; 中定义的类 &quot;D&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果类 &quot;B\D&quot; 未找到，则尝试自动装载类 &quot;B\D&quot;</span><br><span class="line"></span><br><span class="line">\B\foo();   // 调用命名空间 &quot;B&quot; 中的函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">\B::foo();  // 调用全局空间中的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果类 &quot;B&quot; 未找到，则尝试自动装载类 &quot;B&quot;</span><br><span class="line"></span><br><span class="line">// 当前命名空间中的静态方法或函数</span><br><span class="line"></span><br><span class="line">A\B::foo();   // 调用命名空间 &quot;A\A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">              // 如果类 &quot;A\A\B&quot; 未找到，则尝试自动装载类 &quot;A\A\B&quot;</span><br><span class="line"></span><br><span class="line">\A\B::foo();  // 调用命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">              // 如果类 &quot;A\B&quot; 未找到，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>名称解析遵循下列规则：</p>
+<ol>
+<li>对完全限定名称的函数，类和常量的调用在编译时解析。例如 new \A\B 解析为类 A\B。</li>
+<li>所有的非限定名称和限定名称（非完全限定名称）根据当前的导入规则在编译时进行转换。例如，如果命名空间 A\B\C 被导入为 C，那么对 C\D\e() 的调用就会被转换为 A\B\C\D\e()。</li>
+<li>在命名空间内部，所有的没有根据导入规则转换的限定名称均会在其前面加上当前的命名空间名称。例如，在命名空间 A\B 内部调用 C\D\e()，则 C\D\e() 会被转换为 A\B\C\D\e() 。</li>
+<li>非限定类名根据当前的导入规则在编译时转换（用全名代替短的导入名称）。例如，如果命名空间 A\B\C 导入为C，则 new C() 被转换为 new A\B\C() 。</li>
+<li>在命名空间内部（例如A\B），对非限定名称的函数调用是在运行时解析的。例如对函数 foo() 的调用是这样解析的：<ol>
+<li>在当前命名空间中查找名为 A\B\foo() 的函数</li>
+<li>尝试查找并调用 全局(global) 空间中的函数 foo()。</li>
+</ol>
+</li>
+<li>在命名空间（例如A\B）内部对非限定名称或限定名称类（非完全限定名称）的调用是在运行时解析的。下面是调用 new C() 及 new D\E() 的解析过程： new C()的解析:<ol>
+<li>在当前命名空间中查找A\B\C类。</li>
+<li>尝试自动装载类A\B\C。<br>new D\E()的解析:</li>
+<li>在类名称前面加上当前命名空间名称变成：A\B\D\E，然后查找该类。</li>
+<li>尝试自动装载类 A\B\D\E。<br>为了引用全局命名空间中的全局类，必须使用完全限定名称 new \C()。</li>
+</ol>
+</li>
+</ol>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。<br>对象的主要三个特性：</p>
+<ul>
+<li>对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。</li>
+<li>对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。</li>
+<li>对象的表示：对象的表示就相当于身份证，具体区分在相同的行为与状态下有什么不同。</li>
+</ul>
 
       
     </div>
@@ -565,7 +1535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP简介"><span class="nav-number">1.</span> <span class="nav-text">PHP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP语法"><span class="nav-number">2.</span> <span class="nav-text">PHP语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP中的注释"><span class="nav-number">3.</span> <span class="nav-text">PHP中的注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP变量"><span class="nav-number">4.</span> <span class="nav-text">PHP变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo和print语句"><span class="nav-number">5.</span> <span class="nav-text">echo和print语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP简介"><span class="nav-number">1.</span> <span class="nav-text">PHP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP语法"><span class="nav-number">2.</span> <span class="nav-text">PHP语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP中的注释"><span class="nav-number">3.</span> <span class="nav-text">PHP中的注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP变量"><span class="nav-number">4.</span> <span class="nav-text">PHP变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo和print语句"><span class="nav-number">5.</span> <span class="nav-text">echo和print语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-EOF-heredoc"><span class="nav-number">6.</span> <span class="nav-text">PHP EOF(heredoc)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">7.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型比较"><span class="nav-number">8.</span> <span class="nav-text">类型比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">9.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">10.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">11.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#If…Else-语句"><span class="nav-number">12.</span> <span class="nav-text">If…Else 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-语句"><span class="nav-number">13.</span> <span class="nav-text">Switch 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">14.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组排序"><span class="nav-number">15.</span> <span class="nav-text">数组排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超级全局变量"><span class="nav-number">16.</span> <span class="nav-text">超级全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#While-循环"><span class="nav-number">17.</span> <span class="nav-text">While 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#For-Foreach-循环"><span class="nav-number">18.</span> <span class="nav-text">For/Foreach 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">19.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#魔术常量"><span class="nav-number">20.</span> <span class="nav-text">魔术常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名空间-namespace"><span class="nav-number">21.</span> <span class="nav-text">命名空间(namespace)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">22.</span> <span class="nav-text">面向对象</span></a></li></ol></div>
             
 
           </div>
