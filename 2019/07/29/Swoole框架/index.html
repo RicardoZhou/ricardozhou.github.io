@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="php,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="Swoole框架文档中心 Coroutine从4.0版本开始Swoole提供了完整的协程（Coroutine）+ 通道（Channel）特性，带来全新的CSP编程模型。应用层可使用完全同步的编程方式，底层自动实现异步IO。 12345go(function () &amp;#123;    $redis = new Swoole\Coroutine\Redis();    $redis-&amp;gt;conne">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swoole框架">
+<meta property="og:url" content="http://yoursite.com/2019/07/29/Swoole框架/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:description" content="Swoole框架文档中心 Coroutine从4.0版本开始Swoole提供了完整的协程（Coroutine）+ 通道（Channel）特性，带来全新的CSP编程模型。应用层可使用完全同步的编程方式，底层自动实现异步IO。 12345go(function () &amp;#123;    $redis = new Swoole\Coroutine\Redis();    $redis-&amp;gt;conne">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-20T10:48:01.751Z">
+<meta property="og:updated_time" content="2019-07-29T08:06:42.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
+<meta name="twitter:title" content="Swoole框架">
+<meta name="twitter:description" content="Swoole框架文档中心 Coroutine从4.0版本开始Swoole提供了完整的协程（Coroutine）+ 通道（Channel）特性，带来全新的CSP编程模型。应用层可使用完全同步的编程方式，底层自动实现异步IO。 12345go(function () &amp;#123;    $redis = new Swoole\Coroutine\Redis();    $redis-&amp;gt;conne">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/29/Swoole框架/">
 
 
 
 
 
-  <title>分类 | Blog</title>
+  <title>Swoole框架 | Blog</title>
   
 
 
@@ -237,40 +241,181 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/Swoole框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ricardo Zhou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 2 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随手记/">随手记</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Swoole框架</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-29T11:14:56+08:00">
+                2019-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p><a href="https://wiki.swoole.com/wiki/index/prid-1" target="_blank" rel="noopener">Swoole框架文档中心</a></p>
+<h2 id="Coroutine"><a href="#Coroutine" class="headerlink" title="Coroutine"></a>Coroutine</h2><p>从<code>4.0</code>版本开始Swoole提供了完整的<strong>协程（Coroutine）+ 通道（Channel）</strong>特性，带来全新的<code>CSP</code>编程模型。应用层可使用完全同步的编程方式，底层自动实现异步<code>IO</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">go(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    $redis = <span class="keyword">new</span> Swoole\Coroutine\Redis();</span><br><span class="line">    $redis-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line">    $val = $redis-&gt;get(<span class="string">'key'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>4.0.0</code>或更高版本仅支持PHP7<br><code>4.0.1</code>版本开始去除了–enable-coroutine编译选项，改为动态配置<br>协程可以理解为纯用户态的线程，其通过<strong>协作</strong>而不是抢占来进行切换。相对于进程或者线程，协程所有的操作都可以在用户态完成，创建和切换的消耗更低。<code>Swoole</code>可以为每一个请求创建对应的协程，根据<code>IO</code>的状态来合理的调度协程，这会带来了以下优势：</p>
+<ol>
+<li>开发者可以无感知的用同步的代码编写方式达到异步IO的效果和性能，避免了传统异步回调所带来的离散的代码逻辑和陷入多层回调中导致代码无法维护。</li>
+<li>同时由于底层封装了协程，所以对比传统的<code>PHP</code>层协程框架，开发者不需要使用<code>yield</code>关键词来标识一个协程<code>IO</code>操作，所以不再需要对<code>yield</code>的语义进行深入理解以及对每一级的调用都修改为<code>yield</code>，这极大的提高了开发效率。</li>
+</ol>
+</blockquote>
+<p>可以满足大部分开发者的需求。对于私有协议，开发者可以使用协程的TCP或者UDP接口去方便的封装。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/24/PHP基础入门/" rel="next" title="PHP基础入门">
+                <i class="fa fa-chevron-left"></i> PHP基础入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/28/CCC使用ts，无法添加number[]属性/" rel="prev" title="CCC使用ts，无法添加number[]属性">
+                CCC使用ts，无法添加number[]属性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -303,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -364,6 +518,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Coroutine"><span class="nav-number">1.</span> <span class="nav-text">Coroutine</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
