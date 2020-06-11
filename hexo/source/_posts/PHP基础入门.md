@@ -14,7 +14,7 @@ PHP 文件的默认文件扩展名是 ".php"
 **基本语法**
 PHP 脚本可以放在文档中的任何位置。
 PHP 脚本以 尖括号、问号、PHP<?php 开始，以 ?> 问号、尖括号结束：
-```
+```php
 <?php
      //这里是我们要写的PHP代码
 ?>
@@ -24,7 +24,7 @@ PHP 文件通常包含 HTML 标签和一些 PHP 脚本代码。
 **echo显示命令**
 echo 是在PHP里面最常用的一个输出、显示功能的命令。
 我们可以让他显示任何可见的字符。
-```
+```php
 <!DOCTYPE html>
 <html>
 <body> 
@@ -70,7 +70,7 @@ PHP 有四种不同的变量作用域：
 在所有函数外部定义的变量，拥有全局作用域。除了函数外，全局变量可以被脚本中的任何部分访问，要在一个函数中访问一个全局变量，需要使用 global 关键字。
 **PHP global 关键字**
 global 关键字用于函数内访问全局变量。
-```
+```php
 <?php
 $x=0;
 function myTest()
@@ -83,7 +83,7 @@ echo $x; // 输出 5
 ?>
 ```
 PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中。 index 保存变量的名称。这个数组可以在函数内部访问，也可以直接用来更新全局变量。
-```
+```php
 <?php
 $x=0;
 function myTest()
@@ -109,7 +109,7 @@ echo $x; // 输出 5
 **echo语句**
 echo 是一个语言结构，使用的时候可以不用加括号，也可以加上括号： echo 或 echo()。
 显示字符串（字符串可以包含 HTML 标签）
-```
+```php
 <?php
 echo "<h2>PHP 很有趣!</h2>";
 echo "Hello world!<br>";
@@ -118,7 +118,7 @@ echo "这是一个", "字符串，", "使用了", "多个", "参数。";
 ?>
 ```
 显示变量
-```
+```php
 <?php
 $txt1="学习 PHP";
 $txt2="PHP";
@@ -134,7 +134,7 @@ echo "我车的品牌是 {$cars[0]}";
 **print语句**
 print 同样是一个语言结构，可以使用括号，也可以不使用括号： print 或 print()。
 显示字符串（字符串可以包含 HTML 标签）
-```
+```php
 <?php
 print "<h2>PHP 很有趣!</h2>";
 print "Hello world!<br>";
@@ -142,7 +142,7 @@ print "我要学习 PHP!";
 ?>
 ```
 显示变量
-```
+```php
 <?php
 $txt1="学习 PHP";
 $txt2="PHP";
@@ -168,7 +168,7 @@ PHP EOF(heredoc)是一种在命令行shell（如sh、csh、ksh、bash、PowerShe
 3. 结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。
 4. 开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。
 5. 当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。
-```
+```php
 <?php
 echo <<<EOF
     <h1>我的第一个标题</h1>
@@ -181,7 +181,7 @@ EOF;
 1. 以 **<<<EOF** 开始标记开始，以 **EOF** 结束标记结束，结束标记必须顶头写，不能有缩进和空格，且在结束标记末尾要有分号 。
 2. 开始标记和结束标记相同，比如常用大写的 **EOT、EOD、EOF** 来表示，但是不只限于那几个(也可以用：JSON、HTML等)，只要保证开始标记和结束标记不在正文中出现即可。
 3. 位于开始标记和结束标记之间的变量可以被正常解析，但是函数则不可以。在 heredoc 中，变量不需要用连接符 **.** 或 **,** 来拼接。
-```
+```php
 <?php
 $name="runoob";
 $a= <<<EOF
@@ -208,7 +208,7 @@ String（字符串）, Integer（整型）, Float（浮点型）, Boolean（布�
 
 **浮点型**
 浮点数是带小数部分的数字，或是指数形式。
-```
+```php
 <?php 
 $x = 10.365;
 var_dump($x);
@@ -229,7 +229,7 @@ var_dump($x);
 在 PHP 中，对象必须声明。
 首先，你必须使用class关键字声明类对象。类是可以包含属性和方法的结构。
 然后我们在类中定义数据类型，然后在实例化的类中使用数据类型：
-```
+```php
 <?php
 class Car
 {
@@ -247,7 +247,7 @@ class Car
 NULL 值表示变量没有值。NULL 是数据类型为 NULL 的值。
 NULL 值指明一个变量是否为空值。 同样可用于数据空值和NULL值的区别。
 可以通过设置变量值为 NULL 来清空变量数据：
-```
+```php
 <?php
 $x="Hello world!";
 $x=null;
@@ -318,13 +318,14 @@ var_dump($x);
 * **name：**必选参数，常量名称，即标志符。
 * **value：**必选参数，常量的值。
 * **case_insensitive ：**可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
-```
+```php
 <?php
 define("HELLO", "hello world", true);
 echo hello;//输出“hellow world”；
 ?>
 ```
 **常量是全局的。**
+常量在定义后，默认是全局变量，可以在整个运行的脚本的任何地方使用。
 
 ## 字符串
 字符串变量用于包含有字符的值。
@@ -332,7 +333,7 @@ echo hello;//输出“hellow world”；
 **并置运算符**
 在 PHP 中，只有一个字符串运算符。
 并置运算符 (.) 用于把两个字符串值连接起来。
-```
+```php
 <?php 
 $txt1="Hello world!"; 
 $txt2="What a nice day!"; 
@@ -344,7 +345,7 @@ echo $txt1 . " " . $txt2; 	//输出“Hello world! What a nice day!”
 **strpos() 函数**
 用于在字符串内查找一个字符或一段指定的文本。
 如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。（第一个字符的位置是 0，而不是 1。）
-```
+```php
 <?php 
 echo strpos("Hello world!","world"); 	//输出 6
 ?>
@@ -354,7 +355,7 @@ echo strpos("Hello world!","world"); 	//输出 6
 **算术运算符**
 + ， - ， * ， / ， % ， -（取反） ， .（并置）
 PHP7+ 版本新增整除运算符 intdiv()
-```
+```php
 <?php
 var_dump(intdiv(10, 3));	//输出 int(3)
 ?>
@@ -379,7 +380,7 @@ and ， or ， xor（异或） ， && ， || ， !（非）
 |x !== y|不恒等|如果 x 不等于 y，则返回 true|
 
 **三元运算符**
-```
+```php
 <?php
 $test = 'test string';
 // 普通写法
@@ -393,7 +394,7 @@ echo $username, PHP_EOL;
 ```
 **注意：**PHP_EOL 是一个换行符，兼容更大平台。
 在 PHP7+ 版本多了一个 NULL 合并运算符 **??** 。
-```
+```php
 <?php
 // 如果 $_GET['user'] 不存在返回 'nobody'，否则返回 $_GET['user'] 的值
 $username = $_GET['user'] ?? 'nobody';
@@ -437,7 +438,7 @@ PHP7+ 支持组合比较符（combined comparison operator）也称之为太空�
 |左|,|多处用到|
 
 运算符优先级中，or 和 ||，&& 和 and 都是逻辑运算符，效果一样，但是其优先级却不一样。
-```
+```php
 <?php
 // 优先级： &&  >  =  >  and
 // 优先级： ||  >  =  >  or
@@ -474,18 +475,29 @@ switch 语句用于根据多个不同条件执行不同动作。
 自动分配 ID 键（ID 键总是从 0 开始）
 `$cars=array("Volvo","BMW","Toyota");`
 人工分配 ID 键
-```
+```php
 $cars[0]="Volvo";
 $cars[1]="BMW";
 $cars[2]="Toyota";
 ```
 可使用 for 循环遍历数值数组。
+```php
+<?php
+$a = array(
+    'a',
+    3 => 'b',
+    1 => 'c',
+    'd'
+);
+?>
+```
+注：’d’ 的值为最大的整数索引+1。
 **获取数组的长度 - count() 函数**
 用于返回数组的长度（元素的数量）
 **关联数组**
 使用自己分配给数组的指定的键的数组。
 `$age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");`
-```
+```php
 $age['Peter']="35";
 $age['Ben']="37";
 $age['Joe']="43";
@@ -517,7 +529,7 @@ PHP中预定义了几个超级全局变量（superglobals） ，这意味着它�
 **$GLOBALS**
 $GLOBALS 是PHP的一个超级全局变量组，在一个PHP脚本的全部作用域中都可以访问。
 $GLOBALS 是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。
-```
+```php
 <?php 
 $x = 75; 
 $y = 25;
@@ -575,14 +587,14 @@ $_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定�
 
 ## For/Foreach 循环
 **for循环**
-```
+```php
 for (初始值; 条件; 增量)
 {
     要执行的代码;
 }
 ```
 **foreach循环**
-```
+```php
 foreach ($array as $value)	//$value 可用 $key => $value 替换
 {
     要执行代码;
@@ -593,7 +605,7 @@ foreach ($array as $value)	//$value 可用 $key => $value 替换
 **内建函数**
 PHP 中，提供了超过 1000 个内建的函数。
 **创建 PHP 函数**
-```
+```php
 <?php
 function functionName()
 {
@@ -635,7 +647,7 @@ PHP 向它运行的任何脚本提供了大量的预定义常量。
 **定义命名空间**
 默认情况下，所有常量、类和函数名都放在全局空间下，就和PHP支持命名空间之前一样。
 命名空间通过关键字namespace 来声明。如果一个文件中包含命名空间，它必须在其它所有代码之前声明命名空间。
-```
+```php
 <?php  
 // 定义代码在 'MyProject' 命名空间中  
 namespace MyProject;  
@@ -643,7 +655,7 @@ namespace MyProject;
 // ... 代码 ...  
 ```
 也可以在同一个文件中定义不同的命名空间代码
-```
+```php
 <?php  
 namespace MyProject;
 
@@ -659,7 +671,7 @@ function connect() { /* ... */  }
 ?>  
 ```
 不建议使用这种语法在单个文件中定义多个命名空间。建议使用下面的大括号形式的语法。
-```
+```php
 <?php
 namespace MyProject {
     const CONNECT_OK = 1;
@@ -675,7 +687,7 @@ namespace AnotherProject {
 ?>
 ```
 将全局的非命名空间中的代码与命名空间中的代码组合在一起，只能使用大括号形式的语法。全局代码必须用一个不带名称的 namespace 语句加上大括号括起来。
-```
+```php
 <?php
 namespace MyProject {
 
@@ -692,7 +704,7 @@ echo MyProject\Connection::start();
 ?>
 ```
 在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前。
-```
+```php
 <?php
 declare(encoding='UTF-8'); //定义多个命名空间和不包含在命名空间中的代码
 namespace MyProject {
@@ -705,7 +717,7 @@ namespace { // 全局代码
 ?>
 ```
 以下代码会出现语法错误
-```
+```php
 <html>
 <?php
 namespace MyProject; // 命名空间前出现了“<html>” 会致命错误 -　命名空间必须是程序脚本的第一条语句
@@ -713,7 +725,7 @@ namespace MyProject; // 命名空间前出现了“<html>” 会致命错误 -�
 ```
 **子命名空间**
 与目录和文件的关系很像，PHP 命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义：
-```
+```php
 <?php
 namespace MyProject\Sub\Level;  //声明分层次的单个命名空间
 
@@ -729,7 +741,7 @@ function Connect() { /* ... */  }
 注意访问任意全局类、函数或常量，都可以使用完全限定名称，例如 \strlen() 或 \Exception 或 \INI_ALL。
 **命名空间和动态语言特征**
 命名空间的实现受到其语言自身的动态特征的影响。因此，如果要将下面的代码转换到命名空间中，动态访问元素。
-```
+```php
 <?php
 class classname
 {
@@ -753,7 +765,7 @@ echo constant('constname'), "\n"; // prints global
 ```
 必须使用完全限定名称（包括命名空间前缀的类名称）。注意因为在动态的类名称、函数名称或常量名称中，限定名称和完全限定名称没有区别，因此其前导的反斜杠是不必要的。
 动态访问命名空间的元素
-```
+```php
 <?php
 namespace namespacename;
 class classname
@@ -794,7 +806,7 @@ echo constant('namespacename\constname'), "\n"; // 输出 namespaced
 PHP支持两种抽象的访问当前命名空间内部元素的方法，\_\_NAMESPACE\_\_ 魔术常量和namespace关键字。
 常量\_\_NAMESPACE\_\_的值是包含当前命名空间名称的字符串。在全局的，不包括在任何命名空间中的代码，它包含一个空的字符串。
 \_\_NAMESPACE\_\_ 示例, 在命名空间中的代码
-```
+```php
 <?php
 namespace MyProject;
 
@@ -802,14 +814,14 @@ echo '"', __NAMESPACE__, '"'; // 输出 "MyProject"
 ?>
 ```
 \_\_NAMESPACE\_\_ 示例，全局代码
-```
+```php
 <?php
 
 echo '"', __NAMESPACE__, '"'; // 输出 ""
 ?>
 ```
 使用\_\_NAMESPACE\_\_动态创建名称
-```
+```php
 <?php
 namespace MyProject;
 
@@ -824,7 +836,7 @@ function get($classname)
 **使用命名空间：别名/导入**
 有两种使用别名或导入方式：为类名称使用别名，或为命名空间名称使用别名。
 在PHP中，别名是通过操作符 use 来实现的。
-```
+```php
 <?php
 use My\Full\Classname as Another, My\Full\NSname;
 
@@ -840,7 +852,7 @@ $obj = new \Another; // 实例化 Another 类
 **全局空间**
 如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间，与 PHP 引入命名空间概念前一样。在名称前加上前缀 \ 表示该名称是全局空间中的名称，即使该名称位于其它的命名空间中时也是如此。
 **命名空间的顺序**
-```
+```php
 <?php
 namespace A;
 use B\D, C\E as F;
@@ -940,7 +952,7 @@ A\B::foo();   // 调用命名空间 "A\A" 中定义的类 "B" 的 "foo" 方法
 * **析构函数** − 析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。析构函数往往用来做"清理善后" 的工作（例如在建立对象时用new开辟了一片内存空间，应在退出前在析构函数中用delete释放）。
 
 ** 类定义**
-```
+```php
 <?php
 class phpClass {
   var $var1;
@@ -973,7 +985,7 @@ PHP 5 引入了析构函数的概念，这类似于其它面向对象的语言�
 `void __destruct ( void )`
 **继承**
 PHP 使用关键字 extends 来继承一个类，PHP 不支持多继承。
-```
+```php
 class Child extends Parent {
    // 代码部分
 }
@@ -995,7 +1007,7 @@ PHP 对属性或方法的访问控制，是通过在前面添加关键字 public
 接口是通过 interface 关键字来定义的，就像定义一个标准的类一样，但其中定义所有的方法都是空的。
 接口中定义的所有方法都必须是公有，这是接口的特性。
 要实现一个接口，使用 implements 操作符。类中必须实现接口中定义的所有方法，否则会报一个致命错误。类可以实现多个接口，用逗号来分隔多个接口的名称。
-```
+```php
 <?php
 
 // 声明一个'iTemplate'接口
@@ -1019,7 +1031,7 @@ class Template implements iTemplate
 可以把在类中始终保持不变的值定义为常量。在定义和使用常量的时候不需要使用 $ 符号。
 常量的值必须是一个定值，不能是变量，类属性，数学运算的结果或函数调用。
 自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字（如 self，parent 或 static）。
-```
+```php
 <?php
 class MyClass
 {
@@ -1048,7 +1060,7 @@ echo $class::constant . PHP_EOL; // 自 PHP 5.3.0 起
 继承一个抽象类的时候，子类必须定义父类中的所有抽象方法；另外，这些方法的访问控制必须和父类中一样（或者更为宽松）。例如某个抽象方法被声明为受保护的，那么子类中实现的方法就应该声明为受保护的或者公有的，而不能定义为私有的。
 此外，子类方法可以包含父类抽象方法中不存在的可选参数。
 例如，子类定义了一个可选参数，而父类抽象方法的声明里没有，则也是可以正常运行的。
-```
+```php
 <?php
 abstract class AbstractClass
 {
@@ -1074,5 +1086,57 @@ class ConcreteClass extends AbstractClass
 }
 ?>
 ```
+**Static 关键字**
+声明类属性或方法为 static(静态)，就可以不实例化类而直接访问。
+静态属性不能通过一个类已实例化的对象来访问（但静态方法可以）。
+由于静态方法不需要通过对象即可调用，所以伪变量 $this 在静态方法中不可用。
+静态属性不可以由对象通过 **->** 操作符来访问。
+自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字 self，parent 或 static。
+**Final 关键字**
+PHP 5 新增了一个 final 关键字。如果父类中的方法被声明为 final，则子类无法覆盖该方法。如果一个类被声明为 final，则不能被继承。
+**调用父类构造方法**
+PHP 不会在子类的构造方法中自动的调用父类的构造方法。要执行父类的构造方法，需要在子类的构造方法中调用 parent::__construct() 。
+```php
+<?php
+class BaseClass {
+   function __construct() {
+       print "BaseClass 类中构造方法" . PHP_EOL;
+   }
+}
+class SubClass extends BaseClass {
+   function __construct() {
+       parent::__construct();  // 子类构造方法不能自动调用父类的构造方法
+       print "SubClass 类中构造方法" . PHP_EOL;
+   }
+}
+class OtherSubClass extends BaseClass {
+    // 继承 BaseClass 的构造方法
+}
+?>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
